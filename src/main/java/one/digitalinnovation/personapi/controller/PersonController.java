@@ -23,7 +23,7 @@ public class PersonController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO creatPerson(@RequestBody @Valid PersonDTO personDTO){
-        return personService.create(personDTO);
+        return personService.createPerson(personDTO);
     }
 
     @GetMapping(value="/{id}")

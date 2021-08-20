@@ -26,24 +26,11 @@ public class PersonService {
         return personMapper.toDTO(person);
     }
 
-    public MessageResponseDTO create(PersonDTO personDTO){
+    public MessageResponseDTO createPerson(PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);
 
         Person savedPerson = personRepository.save(personToSave);
         return createMessageResponseDTO(savedPerson, "Person created with ID=");
-    }
-
-    public MessageResponseDTO save(PersonDTO personDTO){
-        Person personToSave = Person.builder()
-                .firstName(personDTO.getFirstName())
-                .lastName(personDTO.getLastName())
-                .cpf(personDTO.getCpf())
-                //.birthDate(personDTO.getBirthDate())
-                .phones(personDTO.getPhones())
-                .build();
-
-        personToSave = personRepository.save(personToSave);
-        return createMessageResponseDTO(personToSave, "Person created with ID=");
     }
 
     public List<PersonDTO> listAll() {

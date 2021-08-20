@@ -37,5 +37,5 @@ public class PersonDTO {
 
     @Valid
     @NotEmpty
-    private List<Phone> phones = new ArrayList<>();
+    private List<PhoneDTO> phones = new ArrayList<>();
 }
