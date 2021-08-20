@@ -27,7 +27,7 @@ public class PersonService {
         if( optionalPerson.isEmpty()){
             throw new PersonNotFoundException(id);
         }
-        return personMapper.toDTO(person);
+        return personMapper.toDTO(optionalPerson.get());
     }
 
     public MessageResponseDTO create(PersonDTO personDTO){
