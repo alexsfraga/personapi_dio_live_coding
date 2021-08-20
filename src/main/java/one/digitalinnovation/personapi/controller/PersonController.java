@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.entity.Person;
+import one.digitalinnovation.personapi.exception.PersonNotFoundException;
 import one.digitalinnovation.personapi.mapper.PersonMapper;
 import one.digitalinnovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class PersonController {
     }
 
     @GetMapping(value="/{id}")
-    public PersonDTO getPerson(@PathVariable  Long id){
-        return personService.find(id);
+    public PersonDTO getPerson(@PathVariable  Long id) throws PersonNotFoundException {
+        return personService.findById(id);
     }
 
     @GetMapping(value = "/list")

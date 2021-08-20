@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import one.digitalinnovation.personapi.dto.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.entity.Person;
+import one.digitalinnovation.personapi.exception.PersonNotFoundException;
 import one.digitalinnovation.personapi.mapper.PersonMapper;
 import one.digitalinnovation.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,11 @@ public class PersonService {
 
     final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    public PersonDTO find(Long id){
-        Person person = personRepository.findById(id).get();
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        if( optionalPerson.isEmpty()){
+            throw new PersonNotFoundException(id);
+        }
         return personMapper.toDTO(person);
     }
 
