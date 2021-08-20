@@ -29,7 +29,7 @@ public class PersonController {
 
     @GetMapping(value="/{id}")
     public PersonDTO getPerson(@PathVariable  Long id){
-        return personService.find(id);
+        return personService.findById(id);
     }
 
     @GetMapping(value = "/list")

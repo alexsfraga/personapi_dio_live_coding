@@ -21,7 +21,7 @@ public class PersonService {
 
     final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    public PersonDTO find(Long id){
+    public PersonDTO findById(Long id){
         Person person = personRepository.findById(id).get();
         return personMapper.toDTO(person);
     }
